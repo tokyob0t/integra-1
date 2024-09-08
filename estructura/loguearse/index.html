@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ingresar</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <img src="../img/logo.svg" alt="" />
+
+                <a href="" class="jockey-one-regular">Comidas</a
+                ><a href="" class="jockey-one-regular">Bebidas</a
+                ><a href="" class="jockey-one-regular">Limpieza</a
+                ><a href="" class="jockey-one-regular">Muebles</a>
+            </nav>
+        </header>
+
+        <main class="flex p-h-10">
+            <!-- Seccion izquierda  -->
+            <div class="left-col login-col halign-center flex-col">
+                <h2 class="abel-regular halign-center m-top-50 m-bottom-50">
+                    Inicia Sesión Aquí
+                </h2>
+                <form class="flex-col" action="login.php" method="post">
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-entry form-item"
+                        required
+                        placeholder="Email"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-entry form-item"
+                        required
+                        placeholder="Contraseña"
+                    />
+                    <button
+                        class="form-submit form-item f-size-20"
+                        type="submit"
+                    >
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+            <!-- linea divisora que se adapta dependiendo de si el device es muy pequeño -->
+            <hr class="vertical black" style="border-width: 2px" />
+            <!-- Seccion derecha -->
+            <div class="right-col login-col">
+                <div class="flex-col halign-center m-40">
+                    <h2 class="abel-regular halign-center m-bottom-20 m-top-20">
+                        ¿No tienes cuenta?
+                    </h2>
+                    <button class="form-submit h-30 f-size-20">
+                        Registrate Aquí
+                    </button>
+                </div>
+                <hr class="dotted black" />
+                <div></div>
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+</html>

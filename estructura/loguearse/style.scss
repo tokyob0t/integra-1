@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&display=swap");
+
+$highlight: #333fae;
+
+.abel-regular {
+    font-family: "Abel", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.jockey-one-regular {
+    font-family: "Jockey One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Horizontal Alignment */
+.halign-left {
+    display: flex;
+    justify-content: flex-start;
+}
+.halign-center {
+    display: flex;
+    justify-content: center;
+}
+.halign-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Vertical Alignment */
+.valign-top {
+    display: flex;
+    align-items: flex-start;
+}
+.valign-center {
+    display: flex;
+    align-items: center;
+}
+.valign-bottom {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Text Alignment */
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+
+@for $i from 1 through 200 {
+    .f-size-#{$i} {
+        font-size: #{$i}px;
+    }
+    .p-top-#{$i} {
+        padding-top: #{$i}px;
+    }
+    .p-bottom-#{$i} {
+        padding-bottom: #{$i}px;
+    }
+    .p-left-#{$i} {
+        padding-left: #{$i}px;
+    }
+    .p-right-#{$i} {
+        padding-right: #{$i}px;
+    }
+
+    .p-h-#{$i} {
+        padding: 0 #{$i}px;
+    }
+
+    .p-v-#{$i} {
+        padding: #{$i}px 0;
+    }
+
+    .p-#{$i} {
+        padding: #{$i}px;
+    }
+    .m-top-#{$i} {
+        margin-top: #{$i}px;
+    }
+    .m-bottom-#{$i} {
+        margin-bottom: #{$i}px;
+    }
+    .m-left-#{$i} {
+        margin-left: #{$i}px;
+    }
+    .m-right-#{$i} {
+        margin-right: #{$i}px;
+    }
+
+    .m-h-#{$i} {
+        margin: 0 #{$i}px;
+    }
+
+    .m-v-#{$i} {
+        margin: #{$i}px 0;
+    }
+
+    .max-width-#{$i} {
+        max-width: #{$i}px;
+    }
+
+    .max-height-#{$i} {
+        max-height: #{$i}px;
+    }
+
+    .m-#{$i} {
+        margin: #{$i}px;
+    }
+    .w-#{$i} {
+        width: #{$i}px;
+    }
+    .h-#{$i} {
+        height: #{$i}px;
+    }
+}
+
+// Estilos para el hr (linea divisora gigante)
+hr {
+    border-color: transparent;
+
+    &.black {
+        border-top: black;
+    }
+
+    &.vertical {
+        border-left: 1px solid;
+        height: 200px;
+        margin: auto 10px;
+    }
+
+    &.horizontal {
+        border-top: 1px solid;
+        height: 200px;
+        margin: auto 10px;
+    }
+
+    &.dashed {
+        border-top-style: dashed;
+    }
+
+    &.dotted {
+        border-top-style: dotted;
+    }
+
+    &.solid {
+        border-top-style: solid;
+    }
+}
+
+* {
+    margin: unset;
+    padding: unset;
+}
+
+header {
+    background-color: $highlight;
+    nav {
+        img {
+            clip-path: inset(5px);
+            margin: -5.5px;
+            width: 100px;
+        }
+
+        align-items: center;
+        text-align: center;
+        display: flex;
+
+        a {
+            margin-left: 20px;
+            color: white;
+            text-decoration: unset;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+body {
+    display: flex; /* Si quieres alinear contenido dentro de main */
+    flex-direction: column; /* O como prefieras organizar los elementos */
+}
+html,
+body {
+    height: 100%;
+}
+
+main {
+    min-height: 500px;
+    height: 100vh;
+
+    hr.vertical {
+        margin-top: auto;
+        min-height: 100px;
+    }
+
+    .form-item {
+        height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .form-entry {
+        border: 2px solid black;
+        outline: none;
+        color: black;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        width: 100%;
+        min-height: 20px;
+
+        &::placeholder {
+            @extend .abel-regular;
+            padding: 0 10px;
+            font-weight: 500;
+            color: black;
+        }
+    }
+
+    .form-submit {
+        @extend .abel-regular;
+        background-color: $highlight;
+        border-radius: 30px;
+        min-height: 40px;
+        outline: unset;
+        border: unset;
+        color: white;
+        font-weight: 500;
+    }
+
+    .left-col,
+    .right-col {
+        width: 50%;
+        height: 100%;
+    }
+
+    @media (max-width: 800px) {
+        &.flex {
+            flex-direction: column;
+            hr.vertical {
+                all: unset;
+                border-top: 2px solid black;
+                width: 100%;
+            }
+        }
+
+        .left-col,
+        .right-col {
+            width: 100%;
+            margin: unset;
+        }
+    }
+}
+
+footer {
+}
