@@ -1,8 +1,8 @@
 <?php
 
-$servername = 'localhost';
-$username = 'tokyob0t';
-$password = '31415926535';
+$servername = '';
+$username = '';
+$password = '';
 
 $conn = new mysqli($servername, $username, $password, 'integra-1');
 session_start();
