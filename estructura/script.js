@@ -1,60 +1,49 @@
-const products = [
-    { name: "Producto 1", price: "$10", category: "Comida", image: "imagenes/pate_de_ternera.png" },
-    { name: "Producto 2", price: "$20", category: "Bebidas", image: "imagenes/niños.jfif" },
-    { name: "Producto 3", price: "$20", category: "Limpieza", image: "imagenes/esponja.jpg" },
-    { name: "Producto 4", price: "$20", category: "Muebles", image: "imagenes/sillon.jpg" },
-    { name: "Producto 5", price: "$20", category: "Bebidas", image: "ruta/imagen2.jpg" },
-    { name: "Producto 6", price: "$20", category: "Limpieza", image: "ruta/imagen2.jpg" },
-    { name: "Producto 7", price: "$20", category: "Limpieza", image: "ruta/imagen2.jpg" },
-    { name: "Producto 8", price: "$20", category: "Muebles", image: "ruta/imagen2.jpg" },
-    // Agrega el resto de los productos con sus imágenes correspondientes
-];
+document.addEventListener('DOMContentLoaded', () => {
 
-// Función para generar catálogo de productos
-const generateProductCatalog = (filterCategory = null) => {
+    fetch('http://localhost/inventario_integra/productos.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            generateProductCatalog(data); 
+        })
+        .catch(error => console.error('Error al obtener los productos:', error));
+});
+
+// catálogo de productos
+const generateProductCatalog = (products) => {
     const productCatalog = document.getElementById('product-catalog');
-    productCatalog.innerHTML = '';
+    productCatalog.innerHTML = ''; 
 
-    // Filtrar productos según la categoría seleccionada o mostrar todos si no hay filtro
-    const filteredProducts = filterCategory ? products.filter(product => product.category === filterCategory) : products;
-
-    filteredProducts.forEach(product => {
+    products.forEach(product => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
-        
+
+        const carritoButton = product.mostrar_carrito == 1 ? '<button class="add-to-cart-btn">Añadir al carrito</button>' : '';
+
+        // Crear el HTML para cada tarjeta de producto
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <h2 class="product-name">${product.name}</h2>
-            <p class="product-price">${product.price}</p>
-            <p class="product-category">${product.category}</p>
-            <button class="add-to-cart-btn">Añadir al carrito</button>
+            <img src="${product.imagen}" alt="${product.nombre}" class="product-image">
+            <h2 class="product-name">${product.nombre}</h2>
+            <p class="product-price">$${product.precio}</p>
+            <p class="product-category">${product.categoria}</p>
+            ${carritoButton}
         `;
 
-        productCatalog.appendChild(productCard);
+        productCatalog.appendChild(productCard); // Añadir la tarjeta al catálogo
     });
-};
 
-// Función para restablecer el catálogo completo
-const resetProductCatalog = () => {
-    generateProductCatalog(); // Llama a la función sin filtros
-};
-
-// Evento para el logo
-document.getElementById('logoMc').addEventListener('click', resetProductCatalog);
-
-// Filtrar por categoría al hacer clic en los botones
-document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-        const category = e.target.getAttribute('data-category');
-        generateProductCatalog(category);
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const category = e.target.getAttribute('data-category');
+            
+            // Obtener los productos filtrados por categoría
+            fetch(`http://localhost/inventario_integra/productos.php?categoria=${category}`)
+                .then(response => response.json())
+                .then(data => {
+                    generateProductCatalog(data); // Generar el catálogo filtrado
+                })
+                .catch(error => console.error('Error al obtener los productos filtrados:', error));
+        });
     });
-});
-
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => {
-    generateProductCatalog(); // Mostrar todos los productos al cargar
-
-    // Eventos de carrito y usuario
-    document.getElementById('cart-btn').addEventListener('click', goToCart);
-    document.getElementById('user-btn').addEventListener('click', goToUser);
-});
+    
+};
