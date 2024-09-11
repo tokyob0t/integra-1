@@ -18,7 +18,7 @@ const generateProductCatalog = (products) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        const carritoButton = product.mostrar_carrito == 1 ? '<button class="add-to-cart-btn">Añadir al carrito</button>' : '';
+        const carritoButton = product.stock > 1 ? '<button class="add-to-cart-btn">Añadir al carrito</button>' : '';
 
         // Crear el HTML para cada tarjeta de producto
         productCard.innerHTML = `
