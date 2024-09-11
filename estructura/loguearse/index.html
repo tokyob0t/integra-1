@@ -5,62 +5,118 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ingresar</title>
         <link rel="stylesheet" href="style.css" />
+        <script src="./scripts.js"></script>
     </head>
     <body>
         <header>
-            <nav>
+            <nav class="flex">
                 <img src="../img/logo.svg" alt="" />
-
-                <a href="" class="jockey-one-regular">Comidas</a
-                ><a href="" class="jockey-one-regular">Bebidas</a
-                ><a href="" class="jockey-one-regular">Limpieza</a
-                ><a href="" class="jockey-one-regular">Muebles</a>
+                <a href="" class="jockey-one-regular">Comidas</a>
+                <a href="" class="jockey-one-regular">Bebidas</a>
+                <a href="" class="jockey-one-regular">Limpieza</a>
+                <a href="" class="jockey-one-regular">Muebles</a>
             </nav>
         </header>
-
         <main class="flex p-h-10">
             <!-- Seccion izquierda  -->
-            <div class="left-col login-col halign-center flex-col">
-                <h2 class="abel-regular halign-center m-top-50 m-bottom-50">
-                    Inicia Sesión Aquí
-                </h2>
-                <form class="flex-col" action="login.php" method="post">
-                    <input
-                        type="email"
-                        name="email"
-                        class="form-entry form-item"
-                        required
-                        placeholder="Email"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        class="form-entry form-item"
-                        required
-                        placeholder="Contraseña"
-                    />
-                    <button
-                        class="form-submit form-item f-size-20"
-                        type="submit"
+            <div class="left-col login-col flex-col halign-center">
+                <!-- En caso de estar logueado ocultar este div-->
+                <div
+                    id="login-form-container"
+                    style="display: none"
+                    class="flex-col"
+                >
+                    <h2 class="abel-regular halign-center m-v-50">
+                        Inicia Sesión Aquí
+                    </h2>
+                    <form class="flex-col max-width-500" id="login-form">
+                        <input
+                            id="correo-input"
+                            type="email"
+                            name="email"
+                            class="form-entry form-item p-h-10"
+                            required
+                            placeholder="Email"
+                        />
+                        <input
+                            id="pass-input"
+                            type="password"
+                            name="password"
+                            class="form-entry form-item p-h-10"
+                            autocomplete="off"
+                            required
+                            placeholder="Contraseña"
+                        />
+                        <button
+                            class="form-submit form-item f-size-20"
+                            type="submit"
+                        >
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+                <!-- En caso de ya estar logueado mostrar este div-->
+                <div
+                    id="login-user-container"
+                    style="display: none"
+                    class="flex-col"
+                >
+                    <h1 class="abel-regular halign-center">Ya Logueado</h1>
+                    <p
+                        id="login-user-label"
+                        class="abel-regular halign-center m-v-20 f-size-20"
                     >
-                        Iniciar Sesión
+                        Te encuentras logueado como... ""
+                    </p>
+                    <button id="logout-button" class="form-submit f-size-20">
+                        Cerrar Sesión
                     </button>
-                </form>
+                </div>
             </div>
             <!-- linea divisora que se adapta dependiendo de si el device es muy pequeño -->
-            <hr class="vertical black" style="border-width: 2px" />
+            <hr class="vertical black" />
             <!-- Seccion derecha -->
-            <div class="right-col login-col">
-                <div class="flex-col halign-center m-40">
-                    <h2 class="abel-regular halign-center m-bottom-20 m-top-20">
+            <div class="right-col login-col flex-col halign-center">
+                <div class="flex-col halign-center min-height-250">
+                    <h2 class="abel-regular align-center m-v-20">
                         ¿No tienes cuenta?
                     </h2>
-                    <button class="form-submit h-30 f-size-20">
-                        Registrate Aquí
+                    <button
+                        class="form-submit h-30 f-size-20 min-width-350 m-h-auto"
+                        onclick="window.location.href='../registrarse/index.html'"
+                    >
+                        Registrarse
                     </button>
                 </div>
                 <hr class="dotted black" />
-                <div></div>
+                <div
+                    class="flex-col halign-center"
+                    style="flex-grow: 1; gap: 10px"
+                >
+                    <h2 class="abel-regular m-bottom-20 m-top-20 halign-center">
+                        Logueate usando
+                    </h2>
+                    <button
+                        class="form-submit h-30 f-size-20 min-width-350 m-h-auto"
+                        style="background-color: #3863f2"
+                        onclick="window.location.href='../registrarse/index.html'"
+                    >
+                        <div class="flex halign-center">
+                            <img src="" alt="" />
+                            <p>Continua con Facebook</p>
+                        </div>
+                    </button>
+                    <button
+                        class="form-submit h-30 f-size-20 m-bottom-20 min-width-350 m-h-auto"
+                        style="background-color: #f6f6f3; color: black"
+                        onclick="window.location.href='../registrarse/index.html'"
+                    >
+                        <div class="flex halign-center">
+                            <img src="" alt="" />
+                            <p>Continua con Google</p>
+                        </div>
+                    </button>
+                </div>
             </div>
         </main>
         <footer></footer>

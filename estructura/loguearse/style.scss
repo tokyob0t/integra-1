@@ -29,10 +29,12 @@ $highlight: #333fae;
     display: flex;
     justify-content: flex-start;
 }
+
 .halign-center {
     display: flex;
     justify-content: center;
 }
+
 .halign-right {
     display: flex;
     justify-content: flex-end;
@@ -41,14 +43,17 @@ $highlight: #333fae;
 /* Vertical Alignment */
 .valign-top {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
 }
 .valign-center {
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 .valign-bottom {
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
 }
 
@@ -63,7 +68,26 @@ $highlight: #333fae;
     text-align: right;
 }
 
-@for $i from 1 through 200 {
+.m-left-auto {
+    margin-left: auto;
+}
+.m-right-auto {
+    margin-right: auto;
+}
+.m-h-auto {
+    @extend .m-right-auto, .m-left-auto;
+}
+.m-top-auto {
+    margin-top: auto;
+}
+.m-bottom-auto {
+    margin-bottom: auto;
+}
+.m-v-auto {
+    @extend .m-top-auto, .m-bottom-auto;
+}
+
+@for $i from 1 through 1000 {
     .f-size-#{$i} {
         font-size: #{$i}px;
     }
@@ -105,19 +129,13 @@ $highlight: #333fae;
     }
 
     .m-h-#{$i} {
-        margin: 0 #{$i}px;
+        margin-left: #{$i}px;
+        margin-right: #{$i}px;
     }
 
     .m-v-#{$i} {
-        margin: #{$i}px 0;
-    }
-
-    .max-width-#{$i} {
-        max-width: #{$i}px;
-    }
-
-    .max-height-#{$i} {
-        max-height: #{$i}px;
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
     }
 
     .m-#{$i} {
@@ -128,6 +146,19 @@ $highlight: #333fae;
     }
     .h-#{$i} {
         height: #{$i}px;
+    }
+
+    .max-width-#{$i} {
+        max-width: #{$i}px;
+    }
+    .min-width-#{$i} {
+        min-width: #{$i}px;
+    }
+    .max-height-#{$i} {
+        max-height: #{$i}px;
+    }
+    .min-height-#{$i} {
+        min-height: #{$i}px;
     }
 }
 
@@ -172,20 +203,19 @@ hr {
 header {
     background-color: $highlight;
     nav {
+        align-items: center;
+
         img {
             clip-path: inset(5px);
             margin: -5.5px;
             width: 100px;
         }
 
-        align-items: center;
-        text-align: center;
-        display: flex;
-
         a {
             margin-left: 20px;
             color: white;
             text-decoration: unset;
+
             &:hover {
                 text-decoration: underline;
             }
@@ -196,18 +226,23 @@ body {
     display: flex; /* Si quieres alinear contenido dentro de main */
     flex-direction: column; /* O como prefieras organizar los elementos */
 }
+
 html,
 body {
-    height: 100%;
+    height: 100vh;
 }
 
 main {
-    min-height: 500px;
     height: 100vh;
 
     hr.vertical {
-        margin-top: auto;
-        min-height: 100px;
+        border-width: 2px;
+        height: 100%;
+    }
+
+    #login-form {
+        width: 40vw;
+        margin: 0 auto;
     }
 
     .form-item {
@@ -221,12 +256,10 @@ main {
         color: black;
         border-radius: 10px;
         background-color: #d9d9d9;
-        width: 100%;
         min-height: 20px;
 
         &::placeholder {
             @extend .abel-regular;
-            padding: 0 10px;
             font-weight: 500;
             color: black;
         }
@@ -250,10 +283,16 @@ main {
     }
 
     @media (max-width: 800px) {
+        #login-form {
+            width: 100vw;
+            margin: 0 auto;
+        }
+
         &.flex {
             flex-direction: column;
             hr.vertical {
                 all: unset;
+                height: unset;
                 border-top: 2px solid black;
                 width: 100%;
             }
