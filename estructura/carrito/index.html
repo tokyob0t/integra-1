@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compra</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Imagenes/macdonalds.png" alt="Logo" class="agrandar">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="login">
+            <button>Inicia sesión</button>
+            <img src="Imagenes/usuario.jpg" alt="User-Icon">
+        </div>
+    </header>
+
+    <nav class="nav-overlay">
+        <ul>
+            <li>Comidas</li>
+            <li>Bebidas</li>
+            <li>Limpieza</li>
+            <li>Muebles</li>
+        </ul>
+    </nav>
+<form action="procesar_compra.php" method="post" id="formulariocompra">
+    <main>
+        <section class="carrito">
+            <h2>Carrito de Compra</h2>
+            
+            <div class="item">
+                <img src="Imagenes/manzana.jfif" alt="Manzana-Example">
+                <div class="info">
+                    <h3>Manzana</h3>
+                    <p>Precio: 100$</p>
+                    <p>Descripción: Manzana roja.</p>
+                    <p>Categoría: Fruta</p>
+                    <p>Cantidad: 3</p>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="Imagenes/bebida.png" alt="Bebida-Example">
+                <div class="info">
+                    <h3>Lata de Coca-Cola</h3>
+                    <p>Precio: 1000$</p>
+                    <p>Descripción: Ta cara.</p>
+                    <p>Categoría: Bebidas</p>
+                    <p>Cantidad: 3</p>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="Imagenes/sus.jfif" alt="amogus">
+                <div class="info">
+                    <h3>Amongus</h3>
+                    <p>Precio: mucho$</p>
+                    <p>Descripción: SUS</p>
+                    <p>Categoría: Sospechosa</p>
+                    <p>Cantidad: 3</p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="resumen-compra">
+            <h2>Resumen de compra</h2>
+            <p>Total: </p>
+            <p>SubTotal: </p>
+            <button type="submit">Realizar Compra</button>
+            <h3>Métodos de pago</h3>
+            <img src="Imagenes/pago.png" alt="Métodos de Pago">
+        </aside>
+    </main>
+</form>
+<script src="script.js"></script>
+</body>
+</html>

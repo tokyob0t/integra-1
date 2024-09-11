@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0033cc;
+    padding: 10px;
+}
+
+header .logo img {
+    width: 150px;
+    margin-top: 50px;
+}
+
+header .search-bar{
+    width: 100%; 
+    max-width: 600px; 
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 0px;
+    position: relative;
+    top: 15px; 
+}
+
+header .search-bar input {
+    width: 400px;
+    padding: 5px;
+    font-size: 16px;
+    
+}
+
+header .login {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 50px; 
+    
+}
+
+header .login img{
+    border-radius: 100%;
+}
+
+header .login button {
+    background-color: grey;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+nav {
+    background-color: #0033cc;
+    padding: 10px;
+    text-align: center;
+    top: 0; 
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0%;
+    padding: 0%;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    bottom: 150px;
+    right: 90px; 
+}
+
+main {
+    display: flex;
+    padding: 20px;
+}
+
+
+
+
+.carrito {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.carrito h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.carrito .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.carrito .item img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.carrito .info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.resumen-compra {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.resumen-compra h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.resumen-compra button {
+    background-color: #0033cc;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.resumen-compra img {
+    width: 100%;
+}
