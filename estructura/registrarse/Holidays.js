@@ -7,12 +7,22 @@ document.getElementById('registroForm').addEventListener('submit', function(even
     const correo = document.getElementById('correo').value;
     const contrasena = document.getElementById('contrasena').value;
 
-    // Aquí puedes agregar la lógica para enviar los datos al servidor o cualquier otra acción necesaria.
-    console.log(`Nombre: ${nombre}`);
-    console.log(`Teléfono: ${telefono}`);
-    console.log(`Dirección: ${direccion}`);
-    console.log(`Correo Electrónico: ${correo}`);
-    console.log(`Contraseña: ${contrasena}`);
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('telefono', telefono);
+    formData.append('direccion', direccion);
+    formData.append('correo', correo);
+    formData.append('contrasena', contrasena);
+    formData.append('Tipo_usuario', "Usuario");
 
-    alert('¡Registro completado con éxito!');
+    fetch('guardar_registro.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        alert('¡Registro completado con éxito!');
+    })
+    .catch(error => console.error('Error:', error));
 });
