@@ -1,4 +1,4 @@
-1<?php
+<?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tienda_virtual";
+$dbname = "intra";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -19,10 +19,6 @@ if ($conn->connect_error) {
 
 $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
 
-//en imagen se pone el directorio pa que se muestre nomas osea la ruta /imagen/fruta por ejemplo
-//tambien falta asginarle las variables a las categorias, por ejemplo que fruta caiga dentro de la categoria comidas
-//o que simplemente manzana tenga la categoria de comida
-// lo de visualizar el boton de añadir al carrito por ahora lo puse como estock para despues cambiar eso
 
 if ($categoria) {
     $stmt = $conn->prepare("SELECT nombre, precio, categoria, imagen, stock FROM tabla_de_productos_de_la_tienda WHERE categoria = ?");
