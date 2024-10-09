@@ -87,7 +87,10 @@ main {
     padding: 20px;
 }
 
-
+a {
+    padding: 20px;
+    color: white;
+}
 
 
 .carrito {
