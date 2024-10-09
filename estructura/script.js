@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (userBtn) {
         userBtn.addEventListener('click', () => {
-            window.location.href = './registrarse/index.html';  // Redirigir a la página de registro
+            window.location.href = './loguearse/index.html';  // Redirigir a la página de registro
         });
     }
 
