@@ -1,9 +1,9 @@
 <?php
 
-$host = "mysql.inf.uct.cl";
-$user = "kparra";
-$password = ":)";
-$dbname = "A2023_kparra";
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "tienda_virtual";
 
 $conn = mysqli_connect($host, $user, $password, $dbname);
 
