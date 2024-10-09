@@ -1,6 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.getElementById('logoMc');
+    const userBtn = document.getElementById('user-btn');
+    const cartBtn = document.getElementById('cart-btn');
 
-    fetch('http://localhost/intra/tabla_de_productos_de_la_tienda.php')
+    if (logo) {
+        logo.addEventListener('click', () => {
+            window.location.reload();  // Recargar la página
+        });
+    }
+
+    if (userBtn) {
+        userBtn.addEventListener('click', () => {
+            window.location.href = './registrarse/index.html';  // Redirigir a la página de registro
+        });
+    }
+
+    if (cartBtn) {
+        cartBtn.addEventListener('click', () => {
+            window.location.href = './carrito/index.html';  // Redirigir a la página del carrito
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('productos.php')
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -9,27 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error al obtener los productos:', error));
 });
 
-document.getElementById('logoMc').addEventListener('click', () => {
-    window.location.reload();  // Recargar la página
-});
-
-document.getElementById('user-btn').addEventListener('click', () => {
-    window.location.href = './registrarse/index.html';  // Redirigir a la página de registro
-});
-
-document.getElementById('cart-btn').addEventListener('click', () => {
-    window.location.href = './carrito/index.html';  // Redirigir a la página del carrito
-});
-
-
 const subcategories = {
-    "Comida": ["Vegetales", "Frutas", "Dulces"],
-    "Bebidas": ["Jugos", "Gaseosas", "Licores"],
+    "Comida": ["Vegetales", "Fruta", "Dulces"],
+    "Bebidas": ["Jugo", "Gaseosa", "Licores"],
     "Limpieza": ["Casa", "Cocina", "Baño"],
-    "Muebles": ["Mesas", "Camas", "Sillas"]
+    "Muebles": ["Mesa", "Cama", "Silla"]
 };
 
-// catálogo de productos
+// Catálogo de productos
 const generateProductCatalog = (products) => {
     const productCatalog = document.getElementById('product-catalog');
     productCatalog.innerHTML = ''; 
@@ -38,8 +48,8 @@ const generateProductCatalog = (products) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        // Verifica si el producto tiene imagen, si no, muestra "sin imagen"
-        const productImage = product.imagen ? product.imagen : "sin_imagen.png";  // Coloca una imagen predeterminada o texto
+        // Verifica si el producto tiene imagen. Si no, muestra una imagen predeterminada o texto "Sin imagen".
+        const productImage = product.imagen && product.imagen.trim() !== '' ? product.imagen : 'sin_imagen.png';
 
         const carritoButton = product.stock > 1 ? '<button class="add-to-cart-btn">Añadir al carrito</button>' : '';
 
@@ -47,6 +57,7 @@ const generateProductCatalog = (products) => {
         productCard.innerHTML = `
             <img src="${productImage}" alt="${product.nombre}" class="product-image">
             <h2 class="product-name">${product.nombre}</h2>
+            <p class="product-description">${product.descripcion}</p>
             <p class="product-price">$${product.precio}</p>
             <p class="product-category">${product.categoria}</p>
             ${carritoButton}
@@ -55,15 +66,16 @@ const generateProductCatalog = (products) => {
         productCatalog.appendChild(productCard); // Añadir la tarjeta al catálogo
     });
 
+    // Agregar eventos para los botones de filtro
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             const category = e.target.getAttribute('data-category');
             
             // Obtener las subcategorías correspondientes
-            const categorySubcategories = subcategories[category];
-    
+            const categorySubcategories = subcategories[category] || [];  // Verificamos si existen subcategorías
+
             // Realizar la búsqueda filtrando tanto por la categoría principal como por las subcategorías
-            fetch('http://localhost/inventario_integra/productos.php')
+            fetch(`productos.php?categoria=${category}`)
                 .then(response => response.json())
                 .then(products => {
                     // Filtrar los productos que pertenecen a la categoría o sus subcategorías
@@ -75,6 +87,4 @@ const generateProductCatalog = (products) => {
                 .catch(error => console.error('Error al obtener los productos filtrados:', error));
         });
     });
-    
-    
 };
