@@ -1,8 +1,38 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body></body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="/estructura/index.html">
+            <img src="Images/mac.jpg" alt="Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#">Comidas</a></li>
+                <li><a href="#">Bebidas</a></li>
+                <li><a href="#">Limpieza</a></li>
+                <li><a href="#">Muebles</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>¡Regístrate ahora!</h1>
+        <form id="registroForm" action="guardar_registro.php" method="POST">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre de pila" required autocomplete="off">
+            <input type="tel" id="telefono" name="telefono" placeholder="Nro Telefonico" required autocomplete="off">
+            <input type="text" id="direccion" name="direccion" placeholder="Dirección" required autocomplete="off">
+            <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required autocomplete="off">
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="new-password">
+            <button type="submit">REGISTRARSE</button>
+        </form>
+    </main>
+
+    <script src="Holidays.js"></script>
+</body>
 </html>
