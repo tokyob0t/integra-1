@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginStatus = document.getElementById('login-status');
     
-    fetch('http://localhost/estructura/php/session_status.php')
+    fetch('../estructura/session_start.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'logged_in') {

@@ -21,4 +21,5 @@ if (isset($_SESSION['correo'])) {
 } else {
     echo json_encode(['status' => 'logged_out']);
 }
+
 ?>
