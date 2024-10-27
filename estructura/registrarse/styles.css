@@ -56,6 +56,10 @@ main h1 {
     color: #2e3192;
 }
 
+main p {
+    font-size: 15px
+}
+
 form input {
     width: calc(100% - 20px);
     padding: 10px;
