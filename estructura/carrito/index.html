@@ -15,7 +15,6 @@
             <input type="text" placeholder="Buscar...">
         </div>
         <div class="login">
-            <!-- Actualización del botón de inicio de sesión para redirigir a la página de registro -->
             <p id="login-status">Cargando...</p>
             <img src="../imagenes/usuario.jpg" alt="User-Icon">
         </div>
@@ -29,54 +28,24 @@
             <li>Muebles</li>
         </ul>
     </nav>
+    
     <main>
         <section class="carrito">
             <h2>Carrito de Compra</h2>
-            
-            <div class="item">
-                <img src="../imagenes/manzana.jfif" alt="Manzana-Example">
-                <div class="info">
-                    <h3>Manzana</h3>
-                    <p>Precio: 100$</p>
-                    <p>Descripción: Manzana roja.</p>
-                    <p>Categoría: Fruta</p>
-                    <p>Cantidad: 3</p>
-                </div>
-            </div>
-            
-            <div class="item">
-                <img src="../imagenes/bebida.png" alt="Bebida-Example">
-                <div class="info">
-                    <h3>Lata de Coca-Cola</h3>
-                    <p>Precio: 1000$</p>
-                    <p>Descripción: Ta cara.</p>
-                    <p>Categoría: Bebidas</p>
-                    <p>Cantidad: 3</p>
-                </div>
-            </div>
-            
-            <div class="item">
-                <img src="../imagenes/sus.jfif" alt="amogus">
-                <div class="info">
-                    <h3>Amongus</h3>
-                    <p>Precio: mucho$</p>
-                    <p>Descripción: SUS</p>
-                    <p>Categoría: Sospechosa</p>
-                    <p>Cantidad: 3</p>
-                </div>
+            <div id="items-carrito">
+                <!-- Aquí se cargarán dinámicamente los productos del carrito -->
+                <?php include 'items.php'; ?>
             </div>
         </section>
 
         <aside class="resumen-compra">
             <h2>Resumen de compra</h2>
-            <p>Total: </p>
-            <p>SubTotal: </p>
             <button type="submit">Realizar Compra</button>
             <h3>Métodos de pago</h3>
             <img src="../imagenes/pago.png" alt="Métodos de Pago">
         </aside>
     </main>
-</form>
-<script src="script.js"></script>11
+
+    <script src="script.js"></script>
 </body>
 </html>
