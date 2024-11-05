@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginStatus = document.getElementById('login-status');
     
-    fetch('https://pillan.inf.uct.cl/~fhsanchez/integra-1/estructura/session_status.php')
+    fetch('../session_status.php')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'logged_in') {
