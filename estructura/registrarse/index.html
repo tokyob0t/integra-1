@@ -23,17 +23,16 @@
 
     <main>
         <h1>¡Regístrate ahora!</h1>
-        <form id="registroForm" action="guardar_registro.php" method="POST">
+        <form action="guardar_registro.php" method="POST">
             <input type="text" id="nombre" name="nombre" placeholder="Nombre de pila" required autocomplete="off">
             <input type="tel" id="telefono" name="telefono" placeholder="Nro Telefonico" required autocomplete="off">
             <input type="text" id="direccion" name="direccion" placeholder="Dirección" required autocomplete="off">
             <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required autocomplete="off">
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="new-password">
-            <button type="submit">REGISTRARSE</button>
+            <button type="submit" name="logueo">REGISTRARSE</button>
         </form>
-        <p>¿Ya estas registrado? <a href="/estructura/loguearse/index.html">Inicia Sesión aquí.</a></p>
+        <p>¿Ya estas registrado? <a href="../loguearse/index.html">Inicia Sesión aquí.</a></p>
     </main>
 
-    <script src="Holidays.js"></script>
 </body>
 </html>
