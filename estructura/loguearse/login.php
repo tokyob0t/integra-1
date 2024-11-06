@@ -4,7 +4,6 @@ session_start();
 
 include 'conn.php';
 
-$conn = new mysqli($db_servername, $db_username, $db_password, 'integra-1');
 
 try {
     if ($conn->connect_error) {

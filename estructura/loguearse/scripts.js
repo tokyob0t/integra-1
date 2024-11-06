@@ -28,9 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			const inputCorreo = document.getElementById("correo-input");
 			const inputPassword = document.getElementById("pass-input");
-
 			if (!inputCorreo.value || !inputPassword.value)
 				return alert("Por favor, complete todos los campos.");
+            
+            console.log(inputCorreo.value, inputPassword.value)
 
 			fetch(loginURL, {
 				method: "POST",
@@ -54,10 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Ocultar el formulario en caso de ya estar logueado
 	const hideLogin = (userData) => {
 		document.getElementById("login-form-container").style.display = "none";
-		document.getElementById("login-user-container").style.display = "flex";
+		document.getElementById("login-user-container").style.display = "flex";		
+		
 		document.getElementById("login-user-label").innerText =
 			`Actualmente logueado como ${userData?.nombre}`;
-		// usar addEventListener para que cuando se presione el boton desloguearse y recargar la pagina
 		document.getElementById("logout-button").addEventListener("click", () => {
 			fetch(logoutURL)
 				.then((r) => r.json())
@@ -66,6 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	};
 
-	//checkSession(hideLogin, listenForm);
+	checkSession(hideLogin, listenForm);
 	document.getElementById("login-form-container").style.display = "flex";
 });
