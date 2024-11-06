@@ -4,7 +4,11 @@ include 'conex.inc';
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header('Content-Type: application/json');
 
+$response = ['success' => false];
 // Conexión a la base de datos remota
 // Verificar la conexión
 if ($conn->connect_error) {
@@ -19,7 +23,7 @@ if ($categoria) {
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $sql = "SELECT nombre, precio, categoria, imagen, stock FROM tabla_de_productos_de_la_tienda";
+    $sql = "SELECT nombre, precio, categoria, imagen, stock, ID_producto FROM tabla_de_productos_de_la_tienda";
     $result = $conn->query($sql);
 }
 
@@ -30,6 +34,7 @@ if ($result->num_rows > 0) {
         $productos[] = $row;
     }
 }
+
 
 $conn->close();
 

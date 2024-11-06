@@ -1,8 +1,21 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const logo = document.getElementById('logoMc');
     const userBtn = document.getElementById('user-btn');
     const cartBtn = document.getElementById('cart-btn');
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    let allProducts = []; // Variable para almacenar todos los productos
 
+    // Obtener todos los productos al cargar la página
+    fetch('productos.php')
+        .then(response => response.json())
+        .then(data => {
+            allProducts = data; // Guardar los productos en la variable global
+            generateProductCatalog(allProducts); // Generar el catálogo completo
+        })
+        .catch(error => console.error('Error al obtener los productos:', error));
+    
     if (logo) {
         logo.addEventListener('click', () => {
             window.location.reload();  // Recargar la página
@@ -20,17 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = './carrito/index.html';  // Redirigir a la página del carrito
         });
     }
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Evita la recarga de la página
+
+            // Verificar que searchInput y su valor existan
+            const searchText = searchInput?.value?.toLowerCase();
+            if (!searchText) {
+                console.warn("Campo de búsqueda vacío o no encontrado");
+                return;
+            }
+
+            // Filtrar productos localmente sin hacer una nueva solicitud
+            const filteredProducts = allProducts.filter(product => 
+                product.nombre.toLowerCase().includes(searchText)
+            );
+
+            generateProductCatalog(filteredProducts); // Muestra los productos filtrados
+        });
+    }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('productos.php')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            generateProductCatalog(data); 
-        })
-        .catch(error => console.error('Error al obtener los productos:', error));
-});
 
 const subcategories = {
     "Comida": ["Vegetales", "Fruta", "Dulces"],
@@ -48,10 +72,10 @@ const generateProductCatalog = (products) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
 
-        // Verifica si el producto tiene imagen. Si no, muestra una imagen predeterminada o texto "Sin imagen".
         const productImage = product.imagen && product.imagen.trim() !== '' ? product.imagen : 'sin_imagen.png';
 
-        const carritoButton = product.stock > 1 ? '<button class="add-to-cart-btn">Añadir al carrito</button>' : '';
+        // Asegúrate de usar el nombre de campo correcto aquí, por ejemplo `product.producto` o `product.ID_producto`
+        const carritoButton = `<button class="add-to-cart-btn" data-id="${product.ID_producto}">Añadir al carrito</button>`;
 
         // Crear el HTML para cada tarjeta de producto
         productCard.innerHTML = `
@@ -60,31 +84,43 @@ const generateProductCatalog = (products) => {
             <p class="product-description">${product.descripcion}</p>
             <p class="product-price">$${product.precio}</p>
             <p class="product-category">${product.categoria}</p>
-            ${carritoButton}
+            ${carritoButton}        
         `;
 
         productCatalog.appendChild(productCard); // Añadir la tarjeta al catálogo
     });
 
-    // Agregar eventos para los botones de filtro
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const category = e.target.getAttribute('data-category');
-            
-            // Obtener las subcategorías correspondientes
-            const categorySubcategories = subcategories[category] || [];  // Verificamos si existen subcategorías
-
-            // Realizar la búsqueda filtrando tanto por la categoría principal como por las subcategorías
-            fetch(`productos.php?categoria=${category}`)
-                .then(response => response.json())
-                .then(products => {
-                    // Filtrar los productos que pertenecen a la categoría o sus subcategorías
-                    const filteredProducts = products.filter(product => 
-                        product.categoria === category || categorySubcategories.includes(product.categoria)
-                    );
-                    generateProductCatalog(filteredProducts); // Generar el catálogo filtrado
-                })
-                .catch(error => console.error('Error al obtener los productos filtrados:', error));
-        });
+    // Configurar un solo evento de click para capturar todos los botones "Añadir al carrito"
+    productCatalog.addEventListener('click', (event) => {
+        if (event.target.classList.contains('add-to-cart-btn')) {
+            const ID_producto = event.target.getAttribute('data-id');
+            if (ID_producto) {
+                agregarAlCarrito(ID_producto);
+            } else {
+                console.error("ID de producto no encontrado");
+                alert("Error: ID de producto no encontrado");
+            }
+        }
     });
-};
+}
+
+// Función para agregar un producto al carrito
+function agregarAlCarrito(ID_producto) {
+    const formData = new FormData();
+    formData.append('ID_producto', ID_producto);
+    formData.append('correo', 'prueba@prueba');
+    formData.append('total_carrito', 1);
+
+    fetch('agregar_carrito.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data || "Elemento agregado correctamente");
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+        alert("Error en la solicitud");
+    });
+}
