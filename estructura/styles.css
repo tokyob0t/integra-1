@@ -186,3 +186,10 @@ body {
         margin-top: 20px;
     }
 }
+.cart-btn:hover {
+    background-color: #1f1f7a; /* Cambia a un azul más oscuro */
+    color: #ffffff; /* Asegúrate de que el texto sea visible */
+    transform: scale(1.2); /* Aumenta el tamaño ligeramente */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Añade una sombra elegante */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
